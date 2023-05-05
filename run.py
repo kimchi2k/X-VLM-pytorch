@@ -347,24 +347,24 @@ def run(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--task', type=str, default='itr_nwpu')
-    parser.add_argument('--dist', type=str, default='f2', help="see func get_dist_launch for details")
+    parser.add_argument('--task', type=str, default='itr_rsitmd')
+    parser.add_argument('--dist', type=str, default='f4', help="see func get_dist_launch for details")
 
-    parser.add_argument('--config', default='configs/Retrieval_nwpu.yaml', type=str, help="if not given, use default")
+    parser.add_argument('--config', default='configs/Retrieval_rsitmd.yaml', type=str, help="if not given, use default")
     parser.add_argument('--bs', default=-1, type=int, help="for each gpu, batch_size = bs // num_gpus; "
                                                            "this option only works for fine-tuning scripts.")
     parser.add_argument('--seed', default=42, type=int)
 
-    parser.add_argument('--checkpoint', default='./outputs/nwpu_itr/checkpoint_best.pth', type=str, help="for fine-tuning")
-    parser.add_argument('--load_ckpt_from', default='4m_base_finetune/itr_coco/checkpoint_best.pth', type=str, help="load domain pre-trained params")
+    parser.add_argument('--checkpoint', default='./outputs/rsitmd_itr/checkpoint_best.pth', type=str, help="for fine-tuning")
+    parser.add_argument('--load_ckpt_from', default='./outputs/rsitmd_itr/checkpoint_best.pthh', type=str, help="load domain pre-trained params")
 
     # write path: local or HDFS
-    parser.add_argument('--output_dir', type=str, default='./outputs/nwpu_itr', help='for fine-tuning, local path; '
+    parser.add_argument('--output_dir', type=str, default='./outputs/rsitmd_itr', help='for fine-tuning, local path; '
                                                                       'for pre-training, local and HDFS are both allowed.')
     parser.add_argument('--output_hdfs', type=str, default='', help="HDFS path required by VQA and Refcoco, "
                                                                     "to collect eval results among nodes")
 
-    parser.add_argument('--evaluate', action='store_true', default=False, help="evaluation on downstream tasks")
+    parser.add_argument('--evaluate', action='store_true', default=True, help="evaluation on downstream tasks")
 
     args = parser.parse_args()
 

@@ -105,7 +105,12 @@ def evaluation(model, data_loader, tokenizer, device, config):
 
     image_feats = torch.cat(image_feats, dim=0)
     image_embeds = torch.cat(image_embeds, dim=0)
-    
+
+    # # save image and text embddings
+    import mytools
+    mytools.save_to_npy(image_embeds.cpu().numpy(), "./EMB/rsitmd/img_emb.npy")
+    mytools.save_to_npy(text_embeds.cpu().numpy(), "./EMB/rsitmd/txt_emb.npy")
+
     sims_matrix = image_embeds @ text_embeds.t()
     score_matrix_i2t = torch.full((len(data_loader.dataset.image), len(texts)), -100.0).to(device)
 
